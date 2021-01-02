@@ -1,0 +1,6 @@
+title=fill_way
+type=two_click
+tooltip=選択した軌道で指定範囲を埋めます。
+restart=0
+menu=slope
+icon=way_filler
