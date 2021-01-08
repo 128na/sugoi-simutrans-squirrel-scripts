@@ -1,0 +1,125 @@
+local removeTypes = [
+    mo_tree,
+    mo_pointer,
+    mo_cloud,
+    mo_building,
+    mo_signal,
+    mo_bridge,
+    mo_tunnel,
+    mo_depot_rail,
+    mo_depot_road,
+    mo_depot_water,
+    mo_powerline,
+    mo_transformer_s,
+    mo_transformer_c,
+    mo_roadsign,
+    mo_pillar,
+    mo_depot_air,
+    mo_depot_monorail,
+    mo_depot_tram,
+    mo_depot_maglev,
+    mo_wayobj,
+    mo_way,
+    mo_label,
+    mo_field,
+    mo_crossing,
+    mo_groundobj,
+    mo_depot_narrowgauge,
+    mo_pedestrian,
+    mo_city_car,
+    mo_car,
+    mo_train,
+    mo_monorail,
+    mo_maglev,
+    mo_narrowgauge,
+    mo_ship,
+    mo_airplane,
+    mo_moving_object
+];
+
+class filler {
+    cached = {};
+
+    function fillWay(player, start, end, way) {
+        local is_nw = shouldNW(start, end);
+
+        if (is_nw) {
+            foreach(x in stepGenerator(start.x, end.x)) {
+                local arr = coord3d(x, start.y, start.z);
+                local dest = coord3d(x, end.y, end.z);
+                command_x.build_way(player, arr, dest, way, true);
+            }
+        } else {
+            foreach(y in stepGenerator(start.y, end.y)) {
+                local arr = coord3d(start.x, y, start.z);
+                local dest = coord3d(end.x, y, end.z);
+                command_x.build_way(player, arr, dest, way, true);
+            }
+        }
+    }
+
+    function fillWayObj(player, start, end, wayObj) {
+        local tool = command_x(tool_build_wayobj);
+
+        foreach(x in stepGenerator(start.x, end.x)) {
+            foreach(y in stepGenerator(start.y, end.y)) {
+                tool.work(player, coord3d(x, y, start.z), coord3d(x, y, start.z), "third_rail");
+            }
+        }
+    }
+
+    function stepGenerator(from, to) {
+        if (from < to) {
+            for (local i = from; i <= to; i++) {
+                yield i;
+            }
+
+        } else {
+            for (local i = from; i >= to; i--) {
+                yield i;
+            }
+        }
+    }
+
+    function fillPlatform(player, start, end, building) {
+        foreach(x in stepGenerator(start.x, end.x)) {
+            foreach(y in stepGenerator(start.y, end.y)) {
+                local pos = coord3d(x, y, start.z);
+                command_x.build_station(player, pos, building);
+            }
+        }
+    }
+
+    function clear(player, start, end) {
+        local tool = command_x(tool_remover)
+        local limit = 10;
+
+        foreach(x in stepGenerator(start.x, end.x)) {
+            foreach(y in stepGenerator(start.y, end.y)) {
+                local tile = square_x(x, y).get_ground_tile();
+                local count = 0;
+                local res = null;
+                while (!tile.is_empty() && !res && count < limit) {
+                    res = tool.work(player, tile);
+                    count++;
+                }
+                if (res) {
+                    gui.add_message_at(player, "削除に失敗しました", coord(x, y));
+                }
+            }
+        }
+    }
+    /**
+     * 敷設方角を決める。長辺方向へ線路を引く
+     */
+    function shouldNW(start, end) {
+        return len(start.x, end.x) <= len(start.y, end.y);
+    }
+
+    /**
+     * 距離
+     */
+    function len(a, b) {
+        return a > b ? a - b : b - a;
+    }
+}

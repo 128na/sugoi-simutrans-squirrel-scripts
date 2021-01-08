@@ -1,0 +1,6 @@
+title=範囲撤去
+type=two_click
+tooltip=指定範囲を更地にします
+restart=0
+menu=slope
+icon=clear_force
