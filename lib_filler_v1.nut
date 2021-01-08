@@ -1,45 +1,4 @@
-local removeTypes = [
-    mo_tree,
-    mo_pointer,
-    mo_cloud,
-    mo_building,
-    mo_signal,
-    mo_bridge,
-    mo_tunnel,
-    mo_depot_rail,
-    mo_depot_road,
-    mo_depot_water,
-    mo_powerline,
-    mo_transformer_s,
-    mo_transformer_c,
-    mo_roadsign,
-    mo_pillar,
-    mo_depot_air,
-    mo_depot_monorail,
-    mo_depot_tram,
-    mo_depot_maglev,
-    mo_wayobj,
-    mo_way,
-    mo_label,
-    mo_field,
-    mo_crossing,
-    mo_groundobj,
-    mo_depot_narrowgauge,
-    mo_pedestrian,
-    mo_city_car,
-    mo_car,
-    mo_train,
-    mo_monorail,
-    mo_maglev,
-    mo_narrowgauge,
-    mo_ship,
-    mo_airplane,
-    mo_moving_object
-];
-
 class filler {
-    cached = {};
-
     function fillWay(player, start, end, way) {
         local is_nw = shouldNW(start, end);
 
