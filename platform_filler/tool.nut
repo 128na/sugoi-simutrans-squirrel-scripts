@@ -26,8 +26,6 @@ function do_work(pl, start, end) {
     if (!platform) {
         return of.getMissingObjText("ホーム");
     }
-    gui.add_message_at(pl, "範囲軌道敷設実行：" + way.get_name(), coord(start.x, start.y));
-    filler.fillWay(pl, start, end, way);
     gui.add_message_at(pl, "範囲ホーム敷設実行：" + platform.get_name(), coord(start.x, start.y));
     filler.fillPlatform(pl, start, end, platform);
 }

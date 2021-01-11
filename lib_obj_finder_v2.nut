@@ -58,11 +58,14 @@ class ObjFinder {
     function findWayObj(way) {
         foreach(pos in coord3dGenerator()) {
             local tile = tile_x(pos.x, pos.y, pos.z);
-            local obj = tile.find_object(mo_wayobj);
-
-            local hasOwnedWay = obj && obj.get_owner().get_name() == player.get_name();
-            if (hasOwnedWay) {
-                return obj;
+            local objWay = tile.find_object(mo_way);
+            local isSameWayType = objWay && objWay.get_waytype() == way.get_waytype();
+            if (isSameWayType) {
+                local objWo = tile.find_object(mo_wayobj);
+                local hasOwnedWay = objWo && objWo.get_owner().get_name() == player.get_name();
+                if (hasOwnedWay) {
+                    return objWo.get_desc();
+                }
             }
         }
     }
@@ -72,7 +75,6 @@ class ObjFinder {
         foreach(pos in coord3dGenerator()) {
             local tile = tile_x(pos.x, pos.y, pos.z);
             local objWay = tile.find_object(mo_way);
-
             local isSameWayType = objWay && objWay.get_waytype() == way.get_waytype();
             if (isSameWayType) {
                 local objPl = tile.find_object(mo_building);

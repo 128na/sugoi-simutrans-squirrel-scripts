@@ -18,12 +18,6 @@ function exit(pl) {
 }
 
 function do_work(pl, start, end) {
-    local tile = tile_x(start.x, start.y, start.z);
-    local obj = tile.find_object(mo_way);
-    gui.add_message_at(pl, obj.get_text(), coord(start.x, start.y));
-    return;
-
-
 
     local way = of .findWay();
     if (!way) {
@@ -34,7 +28,6 @@ function do_work(pl, start, end) {
         return of.getMissingObjText("架線");
     }
 
-    filler.fillWay(pl, start, end, way);
     filler.fillWayObj(pl, start, end, wayObj);
 }
 

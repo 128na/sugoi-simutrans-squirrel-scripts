@@ -38,3 +38,9 @@ pakXYZ
 
 # ソース
 https://github.com/128na/sugoi-simutrans-squirrel-scripts
+
+# 更新履歴
+
+※バージョンはスクリプト集共通の値です。
+
+- v2 初版
