@@ -16,7 +16,7 @@
 
 1. 解凍したフォルダ(このreadme.txtのあるフォルダ)をpak/toolフォルダに移動する。
 1. `cursor.clear_force.pak` をpakフォルダに移動する。
-1. `lib_obj_finder_v2.nut`, `lib_mark_v1.nut`, `lib_filler_v1.nut` をpak/toolフォルダに移動する。
+1. `lib_obj_finder_v2.nut`, `lib_mark_v1.nut`, `lib_filler_v2.nut` をpak/toolフォルダに移動する。
 1. Simutransを起動してスロープツールにアイコンが表示されていれば導入成功です。
 
 ```
@@ -24,7 +24,7 @@ pakXYZ
 ┣━ cursor.clear_force.pak
 ┣━ tool
 ┃   ┣━ lib_mark_v1.nut
-┃   ┣━ lib_filler_v1.nut
+┃   ┣━ lib_filler_v2.nut
 ┃   ┣━ clear_force
 ┃   ┃   ┣━ readme.md
 ┃   ┃   ┣━ tool.nut

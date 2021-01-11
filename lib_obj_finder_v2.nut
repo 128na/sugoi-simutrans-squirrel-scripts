@@ -86,6 +86,18 @@ class ObjFinder {
                 }
             }
         }
+    }
 
+    // マーカーを指定座標空間から探す
+    function findLabel() {
+        foreach(pos in coord3dGenerator()) {
+            local tile = tile_x(pos.x, pos.y, pos.z);
+            local obj = tile.find_object(mo_label);
+
+            local hasOwnedWay = obj && obj.get_owner().get_name() == player.get_name();
+            if (hasOwnedWay) {
+                return obj;
+            }
+        }
     }
 }
