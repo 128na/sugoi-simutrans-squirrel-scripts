@@ -6,18 +6,18 @@
 
 # 使い方
 
-- ツールーバーのclear_forceをクリックしてスクリプトを起動
-- 撤去したい範囲をドラッグ
+1. ツールーバーのclear_forceをクリックしてスクリプトを起動
+1. 撤去したい範囲をドラッグ
 
 <img src="doc/1.png">
 <img src="doc/2.png">
 
 # 導入
 
-- 解凍したフォルダ(このreadme.txtのあるフォルダ)をpak/toolフォルダに移動する。
-- `cursor.clear_force.pak` をpakフォルダに移動する。
-- `lib_obj_finder_v2.nut`, `lib_mark_v1.nut`, `lib_filler_v1.nut` をpak/toolフォルダに移動する。
-- Simutransを起動してスロープツールにアイコンが表示されていれば導入成功です。
+1. 解凍したフォルダ(このreadme.txtのあるフォルダ)をpak/toolフォルダに移動する。
+1. `cursor.clear_force.pak` をpakフォルダに移動する。
+1. `lib_obj_finder_v2.nut`, `lib_mark_v1.nut`, `lib_filler_v1.nut` をpak/toolフォルダに移動する。
+1. Simutransを起動してスロープツールにアイコンが表示されていれば導入成功です。
 
 ```
 pakXYZ
