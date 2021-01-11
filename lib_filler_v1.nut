@@ -1,4 +1,5 @@
 class filler {
+    // 指定範囲を指定軌道を並べて埋める
     function fillWay(player, start, end, way) {
         local is_nw = shouldNW(start, end);
 
@@ -17,6 +18,7 @@ class filler {
         }
     }
 
+    // 指定範囲を指定架線を並べて埋める
     function fillWayObj(player, start, end, wayObj) {
         local tool = command_x(tool_build_wayobj);
 
@@ -27,6 +29,7 @@ class filler {
         }
     }
 
+    // 指定値間の数値をイテレートする
     function stepGenerator(from, to) {
         if (from < to) {
             for (local i = from; i <= to; i++) {
@@ -40,6 +43,7 @@ class filler {
         }
     }
 
+    // 指定範囲を指定プラットフォームで埋める
     function fillPlatform(player, start, end, building) {
         foreach(x in stepGenerator(start.x, end.x)) {
             foreach(y in stepGenerator(start.y, end.y)) {
@@ -49,8 +53,9 @@ class filler {
         }
     }
 
+    // 指定範囲を撤去する
     function clear(player, start, end) {
-        local tool = command_x(tool_remover)
+        local tool = command_x(tool_remover);
         local limit = 10;
 
         foreach(x in stepGenerator(start.x, end.x)) {
@@ -68,16 +73,12 @@ class filler {
             }
         }
     }
-    /**
-     * 敷設方角を決める。長辺方向へ線路を引く
-     */
+    // 敷設方角を決める。長辺方向へ線路を引く
     function shouldNW(start, end) {
         return len(start.x, end.x) <= len(start.y, end.y);
     }
 
-    /**
-     * 距離
-     */
+    // 距離
     function len(a, b) {
         return a > b ? a - b : b - a;
     }

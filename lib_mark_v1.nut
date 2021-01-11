@@ -1,3 +1,4 @@
+// 指定座標間を囲う形で建設中マーカーを設置する
 function mark(start, end) {
     local sx = min(start.x, end.x);
     local sy = min(start.y, end.y);

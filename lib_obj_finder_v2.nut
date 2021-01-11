@@ -10,22 +10,38 @@ class ObjFinder {
         area = a;
     }
 
+    // 指定値間の数値をイテレートする
+    function stepGenerator(from, to) {
+        if (from < to) {
+            for (local i = from; i <= to; i++) {
+                yield i;
+            }
+
+        } else {
+            for (local i = from; i >= to; i--) {
+                yield i;
+            }
+        }
+    }
+
+    // 指定座標空間をイテレートする
     function coord3dGenerator() {
-        for (local x = area[0][0]; x <= area[1][0]; x++) {
-            for (local y = area[0][1]; y <= area[1][1]; y++) {
-                for (local z = area[0][2]; z <= area[1][2]; z++) {
+        foreach(x in stepGenerator(area[0][0], area[1][0])) {
+            foreach(y in stepGenerator(area[0][1], area[1][1])) {
+                foreach(z in stepGenerator(area[0][2], area[1][2])) {
                     yield coord3d(x, y, z);
                 }
             }
         }
     }
 
-
+    // 指定名のオブジェクトが指定座標空間にないときのメッセージを返す
     function getMissingObjText(type) {
-        return "範囲" + "[" + area[0][0] + ", " + area[0][1] + ", " + area[0][2] +
-            "] - [" + area[1][0] + ", " + area[1][1] + ", " + area[1][2] + "]" + "に" + type + "がありません。";
+        return "範囲" + "[" + coord3d(area[0][0], area[0][1], area[0][2]) +
+            "] - [" + coord3d(area[1][0], area[1][1], area[1][2]) + "]" + "に" + type + "がありません。";
     }
 
+    // 軌道を指定座標空間から探す
     function findWay() {
         foreach(pos in coord3dGenerator()) {
             local tile = tile_x(pos.x, pos.y, pos.z);
@@ -38,6 +54,7 @@ class ObjFinder {
         }
     }
 
+    // 指定軌道の架線を指定座標空間から探す
     function findWayObj(way) {
         foreach(pos in coord3dGenerator()) {
             local tile = tile_x(pos.x, pos.y, pos.z);
@@ -50,6 +67,7 @@ class ObjFinder {
         }
     }
 
+    // 指定軌道のプラットフォームを指定座標空間から探す
     function findPlatform(way) {
         foreach(pos in coord3dGenerator()) {
             local tile = tile_x(pos.x, pos.y, pos.z);

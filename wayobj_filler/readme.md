@@ -15,14 +15,14 @@
 
 - 解凍したフォルダ(このreadme.txtのあるフォルダ)をpak/toolフォルダに移動する。
 - `cursor.wayobj_filler.pak` をpakフォルダに移動する。
-- `lib_obj_finder_v1.nut`, `lib_mark_v1.nut`, `lib_filler_v1.nut` をpak/toolフォルダに移動する。
+- `lib_obj_finder_v2.nut`, `lib_mark_v1.nut`, `lib_filler_v1.nut` をpak/toolフォルダに移動する。
 - Simutransを起動してスロープツールにアイコンが表示されていれば導入成功です。
 
 ```
 pakXYZ
 ┣━ cursor.wayobj_filler.pak
 ┣━ tool
-┃   ┣━ lib_obj_finder_v1.nut
+┃   ┣━ lib_obj_finder_v2.nut
 ┃   ┣━ lib_mark_v1.nut
 ┃   ┣━ lib_filler_v1.nut
 ┃   ┣━ wayobj_filler
@@ -43,14 +43,7 @@ pakXYZ
 
 |変数名|デフォルト値|説明|
 |---|---|---|
-|`objArea`|`[[0, 0, -2],[10, 10, 2]]`|オブジェクトを検知する範囲を指定します。<br>始点の各座標は終点の各座標よりも以下になるように指定する必要があります。<br>範囲を広げると検索に時間がかかります。|
-
-```
-// ok
-local objArea = [[0, 0, 0],[1, 0, 0]];
-// ng
-local objArea = [[10, 10, 10],[0, 0, 0]];
-```
+|`area`|`[[0, 0, -2],[10, 10, 2]]`|オブジェクトを検知する範囲を指定します。<br>範囲を広げると検索に時間がかかります。|
 
 # 既知の問題
 
