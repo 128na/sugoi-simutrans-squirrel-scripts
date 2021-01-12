@@ -108,7 +108,7 @@ class GridBuilder {
             for (local c = 0; c < count; c++) {
                 if (isWayMode) {
                     local arr = coord3d(x, sy, start.z);
-                    local dest = coord3d(x, ey, start.z);
+                    local dest = coord3d(x, ey, end.z);
                     command_x.build_way(player, arr, dest, way, true);
                 }
                 x++;
@@ -132,7 +132,7 @@ class GridBuilder {
             for (local c = 0; c < count; c++) {
                 if (isWayMode) {
                     local arr = coord3d(sx, y, start.z);
-                    local dest = coord3d(ex, y, start.z);
+                    local dest = coord3d(ex, y, end.z);
                     command_x.build_way(player, arr, dest, way, true);
                 }
                 y++;
@@ -163,15 +163,19 @@ class GridRule {
     // ルール文字列を読み取る
     function parseRule(str) {
         local rules = split(split(str, ":")[1], "/");
-        xRule = split(rules[0], ",");
+        xRule = split(rules[0], ",").map(function(v) {
+            return v.tointeger();
+        });
         // 東西方向未定義なら南北と同じにする
-        yRule = rules.len() < 2 ? xRule : split(rules[1], ",");
+        yRule = rules.len() < 2 ? xRule : split(rules[1], ",").map(function(v) {
+            return v.tointeger();
+        });
     }
 
     function generateXRule() {
         while (1) {
             foreach(x in xRule) {
-                yield x.tointeger();
+                yield x;
             }
         }
     }
@@ -179,7 +183,7 @@ class GridRule {
     function generateYRule() {
         while (1) {
             foreach(y in yRule) {
-                yield y.tointeger();
+                yield y;
             }
         }
     }
