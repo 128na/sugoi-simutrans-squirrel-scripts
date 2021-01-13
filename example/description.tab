@@ -2,5 +2,5 @@ title=テスト
 type=one_click
 tooltip=テストです
 restart=0
-menu=
-icon=
+menu=slope
+icon=example

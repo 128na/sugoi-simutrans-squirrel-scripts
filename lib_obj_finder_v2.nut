@@ -45,11 +45,11 @@ class ObjFinder {
     function findWay() {
         foreach(pos in coord3dGenerator()) {
             local tile = tile_x(pos.x, pos.y, pos.z);
-            local obj = tile.find_object(mo_way);
+            local moWay = tile.find_object(mo_way);
 
-            local hasOwnedWay = obj && obj.get_owner().get_name() == player.get_name();
+            local hasOwnedWay = moWay && moWay.get_owner().get_name() == player.get_name();
             if (hasOwnedWay) {
-                return obj.get_desc();
+                return moWay.get_desc();
             }
         }
     }
@@ -58,13 +58,32 @@ class ObjFinder {
     function findWayObj(way) {
         foreach(pos in coord3dGenerator()) {
             local tile = tile_x(pos.x, pos.y, pos.z);
-            local objWay = tile.find_object(mo_way);
-            local isSameWayType = objWay && objWay.get_waytype() == way.get_waytype();
+            local moWay = tile.find_object(mo_way);
+            local isSameWayType = moWay && moWay.get_waytype() == way.get_waytype();
             if (isSameWayType) {
-                local objWo = tile.find_object(mo_wayobj);
-                local hasOwnedWay = objWo && objWo.get_owner().get_name() == player.get_name();
+                local moWobj = tile.find_object(mo_wayobj);
+                local hasOwnedWay = moWobj && moWobj.get_owner().get_name() == player.get_name();
                 if (hasOwnedWay) {
-                    return objWo.get_desc();
+                    return moWobj.get_desc();
+                }
+            }
+        }
+    }
+
+    // 指定軌道の標識を指定座標空間から探す
+    function findSign(way) {
+        foreach(pos in coord3dGenerator()) {
+            local tile = tile_x(pos.x, pos.y, pos.z);
+            local moWay = tile.find_object(mo_way);
+            local isSameWayType = moWay && moWay.get_waytype() == way.get_waytype();
+            if (isSameWayType) {
+                local moSign = tile.find_object(mo_signal);
+                if (moSign) {
+                    return moSign.get_desc();
+                }
+                local moRSign = tile.find_object(mo_roadsign);
+                if (moRSign) {
+                    return moRSign.get_desc();
                 }
             }
         }
@@ -74,15 +93,15 @@ class ObjFinder {
     function findPlatform(way) {
         foreach(pos in coord3dGenerator()) {
             local tile = tile_x(pos.x, pos.y, pos.z);
-            local objWay = tile.find_object(mo_way);
-            local isSameWayType = objWay && objWay.get_waytype() == way.get_waytype();
+            local moWay = tile.find_object(mo_way);
+            local isSameWayType = moWay && moWay.get_waytype() == way.get_waytype();
             if (isSameWayType) {
-                local objPl = tile.find_object(mo_building);
+                local moBld = tile.find_object(mo_building);
 
-                local hasOwnedPlatform = objPl &&
-                    objPl.get_owner().get_name() == player.get_name();
+                local hasOwnedPlatform = moBld &&
+                    moBld.get_owner().get_name() == player.get_name();
                 if (hasOwnedPlatform) {
-                    return objPl.get_desc();
+                    return moBld.get_desc();
                 }
             }
         }

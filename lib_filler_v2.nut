@@ -20,11 +20,24 @@ class filler {
 
     // 指定範囲を指定架線を並べて埋める
     function fillWayObj(player, start, end, wayObj) {
-        local tool = command_x(tool_build_wayobj);
-
         foreach(x in stepGenerator(start.x, end.x)) {
             foreach(y in stepGenerator(start.y, end.y)) {
-                tool.work(player, coord3d(x, y, start.z), coord3d(x, y, start.z), "third_rail");
+                local pos = coord3d(x, y, start.z);
+                command_x.build_wayobj(player, pos, pos, wayObj);
+            }
+        }
+    }
+
+    // 指定範囲を指定架線を並べて埋める
+    function fillSign(player, start, end, sign) {
+        foreach(x in stepGenerator(start.x, end.x)) {
+            foreach(y in stepGenerator(start.y, end.y)) {
+                local pos = coord3d(x, y, start.z);
+                try {
+                    command_x.build_sign_at(player, pos, sign);
+                } catch (e) {
+                    // 軌道が無いマスで実行するとエラーになるので華麗にスルー
+                }
             }
         }
     }
@@ -53,10 +66,18 @@ class filler {
         }
     }
 
-    // 指定範囲を撤去する
+    // 指定範囲を1回のみ撤去する
+    function clearOnce(player, start, end) {
+        clearMultiple(player, start, end, 1);
+    }
+
+    // 指定範囲を全撤去する
     function clear(player, start, end) {
+        clearMultiple(player, start, end, 10);
+    }
+
+    function clearMultiple(player, start, end, limit) {
         local tool = command_x(tool_remover);
-        local limit = 10;
 
         foreach(x in stepGenerator(start.x, end.x)) {
             foreach(y in stepGenerator(start.y, end.y)) {

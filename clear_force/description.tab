@@ -1,6 +1,6 @@
-title=範囲撤去
+title=範囲全撤去
 type=two_click
-tooltip=指定範囲を更地にします
+tooltip=指定範囲の撤去できるものをすべて撤去します
 restart=0
 menu=slope
 icon=clear_force

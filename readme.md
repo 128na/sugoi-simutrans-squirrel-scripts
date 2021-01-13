@@ -16,16 +16,22 @@
   - 架線を範囲設置
 
 - [Platform Filler](/platform_filler)
-  - 軌道とプラットフォームを範囲設置
+  - プラットフォームを範囲設置
+
+- [Sign Filler](/sign_filler)
+  - 標識（信号）を範囲設置
 
 
 ## その他
 
-- [vehicle info](/vehicle_info)
-  - 車両と所属する路線の乗車率を表示する
-
-- [clear force](/clear_force)
+- [Clear Once](/clear_once)
   - 範囲撤去（OTRPの範囲撤去と同等）
+
+- [Clear Force](/clear_force)
+  - 範囲全撤去
+
+- [Vehicle Info](/vehicle_info)
+  - 車両と所属する路線の乗車率を表示する
 
 ## 追加予定
 
