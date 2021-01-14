@@ -11,7 +11,7 @@ class ObjFinder {
     }
 
     // 指定値間の数値をイテレートする
-    function stepGenerator(from, to) {
+    function _stepGenerator(from, to) {
         if (from < to) {
             for (local i = from; i <= to; i++) {
                 yield i;
@@ -25,10 +25,10 @@ class ObjFinder {
     }
 
     // 指定座標空間をイテレートする
-    function coord3dGenerator() {
-        foreach(x in stepGenerator(area[0][0], area[1][0])) {
-            foreach(y in stepGenerator(area[0][1], area[1][1])) {
-                foreach(z in stepGenerator(area[0][2], area[1][2])) {
+    function _coord3dGenerator() {
+        foreach(x in _stepGenerator(area[0][0], area[1][0])) {
+            foreach(y in _stepGenerator(area[0][1], area[1][1])) {
+                foreach(z in _stepGenerator(area[0][2], area[1][2])) {
                     yield coord3d(x, y, z);
                 }
             }
@@ -43,7 +43,7 @@ class ObjFinder {
 
     // 軌道を指定座標空間から探す
     function findWay() {
-        foreach(pos in coord3dGenerator()) {
+        foreach(pos in _coord3dGenerator()) {
             local tile = tile_x(pos.x, pos.y, pos.z);
             local moWay = tile.find_object(mo_way);
 
@@ -56,7 +56,7 @@ class ObjFinder {
 
     // 指定軌道の架線を指定座標空間から探す
     function findWayObj(way) {
-        foreach(pos in coord3dGenerator()) {
+        foreach(pos in _coord3dGenerator()) {
             local tile = tile_x(pos.x, pos.y, pos.z);
             local moWay = tile.find_object(mo_way);
             local isSameWayType = moWay && moWay.get_waytype() == way.get_waytype();
@@ -72,7 +72,7 @@ class ObjFinder {
 
     // 指定軌道の標識を指定座標空間から探す
     function findSign(way) {
-        foreach(pos in coord3dGenerator()) {
+        foreach(pos in _coord3dGenerator()) {
             local tile = tile_x(pos.x, pos.y, pos.z);
             local moWay = tile.find_object(mo_way);
             local isSameWayType = moWay && moWay.get_waytype() == way.get_waytype();
@@ -91,7 +91,7 @@ class ObjFinder {
 
     // 指定軌道のプラットフォームを指定座標空間から探す
     function findPlatform(way) {
-        foreach(pos in coord3dGenerator()) {
+        foreach(pos in _coord3dGenerator()) {
             local tile = tile_x(pos.x, pos.y, pos.z);
             local moWay = tile.find_object(mo_way);
             local isSameWayType = moWay && moWay.get_waytype() == way.get_waytype();
@@ -109,7 +109,7 @@ class ObjFinder {
 
     // マーカーを指定座標空間から探す
     function findLabel() {
-        foreach(pos in coord3dGenerator()) {
+        foreach(pos in _coord3dGenerator()) {
             local tile = tile_x(pos.x, pos.y, pos.z);
             local obj = tile.find_object(mo_label);
 

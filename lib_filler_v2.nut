@@ -1,7 +1,7 @@
 class filler {
     // 指定範囲を指定軌道を並べて埋める
     function fillWay(player, start, end, way) {
-        local is_nw = shouldNW(start, end);
+        local is_nw = _shouldNW(start, end);
 
         if (is_nw) {
             foreach(x in stepGenerator(start.x, end.x)) {
@@ -68,15 +68,15 @@ class filler {
 
     // 指定範囲を1回のみ撤去する
     function clearOnce(player, start, end) {
-        clearMultiple(player, start, end, 1);
+        _clearMultiple(player, start, end, 1);
     }
 
     // 指定範囲を全撤去する
     function clear(player, start, end) {
-        clearMultiple(player, start, end, 10);
+        _clearMultiple(player, start, end, 10);
     }
 
-    function clearMultiple(player, start, end, limit) {
+    function _clearMultiple(player, start, end, limit) {
         local tool = command_x(tool_remover);
 
         foreach(x in stepGenerator(start.x, end.x)) {
@@ -95,12 +95,12 @@ class filler {
         }
     }
     // 敷設方角を決める。長辺方向へ線路を引く
-    function shouldNW(start, end) {
-        return len(start.x, end.x) <= len(start.y, end.y);
+    function _shouldNW(start, end) {
+        return _len(start.x, end.x) <= _len(start.y, end.y);
     }
 
     // 距離
-    function len(a, b) {
+    function _len(a, b) {
         return a > b ? a - b : b - a;
     }
 }
@@ -112,12 +112,12 @@ class GridBuilder {
     }
 
     function build(player, way, start, end) {
-        buildNW(player, way, start, end);
-        buildES(player, way, start, end);
+        _buildNW(player, way, start, end);
+        _buildES(player, way, start, end);
     }
 
     // 南北方向
-    function buildNW(player, way, start, end) {
+    function _buildNW(player, way, start, end) {
         local sx = min(start.x, end.x);
         local sy = min(start.y, end.y);
         local ex = max(start.x, end.x);
@@ -141,7 +141,7 @@ class GridBuilder {
         }
     }
     // 東西方向
-    function buildES(player, way, start, end) {
+    function _buildES(player, way, start, end) {
         local sx = min(start.x, end.x);
         local sy = min(start.y, end.y);
         local ex = max(start.x, end.x);
