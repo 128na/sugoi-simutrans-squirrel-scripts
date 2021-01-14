@@ -1,4 +1,4 @@
-# 説明
+# 軌道範囲建設
 
 指定範囲を指定した軌道を並べて埋めるスクリプトです。
 線路以外にも道路や滑走路、運河など全タイプで使用可能です。
@@ -14,26 +14,6 @@
 <img src="doc/1.png">
 <img src="doc/2.png">
 
-# 導入
-
-1. 解凍したフォルダ(このreadme.txtのあるフォルダ)をpak/toolフォルダに移動する。
-1. `cursor.way_filler.pak` をpakフォルダに移動する。
-1. `lib_obj_finder_v2.nut`, `lib_mark_v1.nut`, `lib_filler_v2.nut` をpak/toolフォルダに移動する。
-1. Simutransを起動してスロープツールにアイコンが表示されていれば導入成功です。
-
-```
-pakXYZ
-┣━ cursor.way_filler.pak
-┣━ tool
-┃   ┣━ lib_obj_finder_v2.nut
-┃   ┣━ lib_mark_v1.nut
-┃   ┣━ lib_filler_v2.nut
-┃   ┣━ way_filler
-┃   ┃   ┣━ readme.md
-┃   ┃   ┣━ tool.nut
-┃   ┃   ┣━ description.tab
-```
-
 ## 使えない・注意が必要な種類
 
 - 送電線
@@ -42,24 +22,3 @@ pakXYZ
   - トンネル内で指定される軌道が選択されます
 - 橋
   - 橋の速度と同じ軌道が選択されます（橋末端部分に地上軌道があるようです）
-
-# スクリプトのパラメーター
-
-|変数名|デフォルト値|説明|
-|---|---|---|
-|`area`|`[[0, 0, -2],[10, 10, 2]]`|オブジェクトを検知する範囲を指定します。<br>範囲を広げると検索に時間がかかります。|
-
-# 既知の問題
-
-- アイコンがスロープツールにしか表示できなかったのでスロープツールに配置されています。
-  - 特殊建築物ツールに移したいですね！
-
-# ソース
-https://github.com/128na/sugoi-simutrans-squirrel-scripts
-
-# 更新履歴
-
-※バージョンはスクリプト集共通の値です。
-
-- v1 初版
-- v2 処理を高速化
