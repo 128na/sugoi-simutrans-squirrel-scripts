@@ -173,7 +173,7 @@ class GridRule {
     validator = regexp("grid:(\\d+)(,(\\d+))+(\\/(\\d+)(,(\\d+))+){0,1}");
 
     constructor(str) {
-        parseRule(str);
+        _parseRule(str);
     }
 
     // 建設ルールの妥当性を検証
@@ -182,7 +182,7 @@ class GridRule {
     }
 
     // ルール文字列を読み取る
-    function parseRule(str) {
+    function _parseRule(str) {
         local rules = split(split(str, ":")[1], "/");
         xRule = split(rules[0], ",").map(function(v) {
             return v.tointeger();
