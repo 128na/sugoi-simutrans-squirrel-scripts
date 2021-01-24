@@ -1,0 +1,6 @@
+title=範囲軌道・駅・架線設置
+type=two_click
+tooltip=指定範囲を指定した軌道、駅、架線を並べて埋めます
+restart=0
+menu=slope
+icon=torima_station

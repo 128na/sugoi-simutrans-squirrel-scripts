@@ -43,3 +43,8 @@ Name=grid_filler
 Image[0]=> -
 Image[1]=> icon.1.7
 --
+Obj=cursor
+Name=torima_station
+Image[0]=> -
+Image[1]=> icon.1.8
+--

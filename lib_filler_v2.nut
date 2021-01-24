@@ -1,9 +1,9 @@
 class filler {
     // 指定範囲を指定軌道を並べて埋める
     function fillWay(player, start, end, way) {
-        local is_nw = _shouldNW(start, end);
+        local is_ns = _shouldNS(start, end);
 
-        if (is_nw) {
+        if (is_ns) {
             foreach(x in stepGenerator(start.x, end.x)) {
                 local arr = coord3d(x, start.y, start.z);
                 local dest = coord3d(x, end.y, end.z);
@@ -95,7 +95,7 @@ class filler {
         }
     }
     // 敷設方角を決める。長辺方向へ線路を引く
-    function _shouldNW(start, end) {
+    function _shouldNS(start, end) {
         return _len(start.x, end.x) <= _len(start.y, end.y);
     }
 
